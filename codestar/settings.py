@@ -37,11 +37,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = development
 
-# ALLOWED_HOSTS = ['jpcodestar2022.herokuapp.com', 'localhost']
-if development:
-    ALLOWED_HOSTS = ['localhost']
-else:
-    ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
+ALLOWED_HOSTS = ['jpcodestar2022.herokuapp.com', 'localhost']
+# if development:
+#     ALLOWED_HOSTS = ['localhost']
+# else:
+#     ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
 
 
 # Application definition
@@ -101,7 +101,7 @@ WSGI_APPLICATION = 'codestar.wsgi.application'
 # else:
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-    # }
+}
 
 
 # Password validation
