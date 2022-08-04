@@ -35,8 +35,8 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = development
-DEBUG = True
+DEBUG = development
+# DEBUG = True
 
 ALLOWED_HOSTS = ['jpcodestar2022.herokuapp.com', 'localhost']
 # if development:
