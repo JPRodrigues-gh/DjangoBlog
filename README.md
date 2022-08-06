@@ -86,6 +86,18 @@ For everyday usage of Gitpod, it doesn’t have any effect at all. The script on
 
 It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
 
+**env.py**
+
+```
+""" Set environment variables and secret keys
+ for local development environment"""
+import os
+
+os.environ["DATABASE_URL"] = "postgres://fcarqdoqobdfhc:b44da58c166f74cbd81f16df5ec5b21089690f36f8f25a4b77e1a3dea6f6711b@ec2-34-249-161-200.eu-west-1.compute.amazonaws.com:5432/d3ujbb8eo965pb"
+os.environ["SECRET_KEY"] = "i@^-*tyh7v3u%=8_(mp6u))m*5tmwa4r9)xw6$^a$+^s^i=ov!"
+os.environ["CLOUDINARY_URL"] = "cloudinary://366754645171869:2BPquLRSiuh7AezQWFvbEbf5Fbo@jp-cloudy" 
+```
+
 **So….?**
 
 We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.

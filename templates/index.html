@@ -1,0 +1,80 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Blog Entries Column -->
+        <div class="col-12 mt-3 left">
+            <div class="row">
+            {% for post in post_list %}
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="image-container">
+                                <!-- curly bracket followed by the percent sign indicates a control statement -->
+                                {% if "placeholder" in post.featured_image.url %}
+                                <!-- if the word placeholder is found in the URL, that's our default if we don't
+                                      supply an image. Then, we'll assume that there is no featured image,
+                                      so we'll just load a default placeholder image -->
+                                <img class="card-img-top"
+                                    src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg">
+                                {% else %}
+                                <!-- double curly braces inserts the content into the html -->
+                                <img class="card-img-top" src=" {{ post.featured_image.url }} ">
+                                {% endif %}
+                                <div class="image-flash">
+                                    <p class="author">Author: {{ post.author }}</p>
+                                </div>
+                            </div>
+                            <a href="{% url 'post_detail' post.slug %}" class="post-link">
+                                <h2 class="card-title">{{ post.title }}</h2>
+                                <p class="card-text">{{ post.excerpt }}</p>
+                            </a>
+                            <hr>
+                            <p class="card-text text-muted h6">
+                                {{ post.created_on}}
+                                <i class="far fa-heart"></i>
+                                {{ post.number_of_likes }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            
+            <!-- --------------------------------------------------- -->
+            <!-- Django has a built-in counter method on our for loop,
+                  when it's evenly divisible by three, then we're
+                  going to close our row class and add a new one -->
+            {% if forloop.counter|divisibleby:3 %}
+            <!-- close the row div after 3 posts have been
+                 displayed and open a new one row div -->
+            </div>
+            <div class="row">
+            {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% if is_paginated %}
+    <!-- When we have more than six posts on our blog, we want them to
+          appear on an extra page. Both the Django list view and
+          Bootstrap provide easy pagination functionality. -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li>
+            <a href="?page={{ page_obj.previous_page_number }}"
+                class="page-link">&laquo; PREV</a>
+            </li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li>
+            <a href="?page={{ page_obj.next_page_number }}" 
+                class="page-link">NEXT &raquo;</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+
+{%endblock%}
