@@ -39,8 +39,8 @@ class PostDetail(View):
         liked = False
         # filter post likes by the user id to see if they've liked the post
         if post.likes.filter(id=self.request.user.id).exists():
-            liked=True
-        
+            liked = True
+
         # send all of the above information to our render method
         return render(
             request,
@@ -64,8 +64,8 @@ class PostDetail(View):
         liked = False
         # filter post likes by the user id to see if they've liked the post
         if post.likes.filter(id=self.request.user.id).exists():
-            liked=True
-        
+            liked = True
+
         comment_form = CommentForm(data=request.POST)
 
         if comment_form.is_valid():
